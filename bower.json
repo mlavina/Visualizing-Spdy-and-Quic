@@ -1,0 +1,14 @@
+{
+    "name": "NetworkVisualizer",
+    "version": "1.0.0",
+    "main": "path/to/main.css",
+    "ignore": [
+        ".jshintrc",
+        "**/*.txt"
+    ],
+    "dependencies": {
+        "eventDrops": "marmelab/EventDrops#0.1.2"
+    },
+    "devDependencies": {
+    }
+}
