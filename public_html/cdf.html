@@ -26,13 +26,14 @@ and open the template in the editor.
 
         <!-- note: moment.js must be loaded before vis.js, else vis.js uses its embedded version of moment.js -->
         <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.0/Chart.js"></script>
         <script src="js/vis/dist/vis.js"></script>
         <link href="js/vis/dist/vis.css" rel="stylesheet" type="text/css" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
         <script src="js/vendor/jquery-2.2.3.min.js"></script>
+        <script src="js/vendor/Chart.Core.js"></script>
+        <script src="js/vendor/Chart.Scatter.js"></script>
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -54,7 +55,12 @@ and open the template in the editor.
 
         <div class="container">
             <div class="page-header">
-                <h1>CDF of Response Times</h1>
+                <h1>CDF of Page Load Times</h1>
+            </div>
+            <div class="row">
+                <span  id="cdfLegend" class="col-md-4 col-md-offset-4">
+                    
+                </span>
             </div>
             <div class ="row">
                 <div class="col-md-12">
