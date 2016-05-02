@@ -8,8 +8,7 @@ $.getJSON("resources/data.json", function (data) {
 
 
     var now = moment().minutes(0).seconds(0).milliseconds(0);
-    var groupCount = 4;
-    var itemCount = 4;
+
 
 // create a data set with groups
     var groups = new vis.DataSet();
@@ -21,7 +20,14 @@ $.getJSON("resources/data.json", function (data) {
         }else if(this.spdy){
             color  = 'yellow';
         }
-        groups.add({id: index, content: this.siteName, alexaRank : this.alexaRank, style:'background-color:' + color});
+        groups.add({id: index, 
+            content: this.siteName, 
+            numPackets: this.objects.length, 
+            alexaRank : this.alexaRank, 
+            throughput : this.throughput,
+            pageLoadTime : this.pageLoadTime,
+            avgResponseTime : this.avgResponseTime,
+            style:'background-color:' + color});
     });
 
     // create a dataset with items
@@ -93,12 +99,27 @@ $.getJSON("resources/data.json", function (data) {
             var top = (screen.height/2)-(h/2);
             var myWindow = window.open("", group.content, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
             myWindow.document.title = group.content;
+            myWindow.document.write('<title>' +group.content+'</title>');
             myWindow.document.write("<h3>" + group.content + "</h3>");
-            var respTime = item.end.diff(item.start, 'milliseconds')
+            var respTime = item.end.diff(item.start, 'milliseconds');
             myWindow.document.write("<p>ResponseTime " + respTime + " milliseconds</p>");
             myWindow.document.write("<p>Filetype:" + item.content + "</p>");
             myWindow.document.write("<p>Size:" + item.numOfBytes + " bytes</p>");
-            console.log(items.get()[properties.item]);
+        }else if(properties.what === "group-label"){
+            var group = groups.get()[properties.group];
+            var w = 350;
+            var h = 300;
+            var left = (screen.width/2)-(w/2);
+            var top = (screen.height/2)-(h/2);
+            var myWindow = window.open("", group.content, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+            myWindow.document.title = group.content;
+            myWindow.document.write('<title>' +group.content+'</title>');
+            myWindow.document.write("<h3>" + group.content + "</h3>");
+            myWindow.document.write("<p>Alexa Rank: " + group.alexaRank + "</p>");
+            myWindow.document.write("<p>Number of Requests: " + group.numPackets + "</p>");
+            myWindow.document.write("<p>Average RTT: " + group.avgResponseTime + " ms</p>");
+            myWindow.document.write("<p>Page Load Time: " + group.pageLoadTime + " ms</p>");
+            myWindow.document.write("<p>Throughput: " + group.throughput * 1000 + " bytes/sec</p>");
         }
     }
 });
