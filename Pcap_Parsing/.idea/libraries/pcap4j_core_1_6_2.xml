@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="pcap4j-core-1.6.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../Homework2/lib/pcap4j-core-1.6.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
