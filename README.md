@@ -1,1 +1,2 @@
 # Visualizing-Spdy-and-Quic
+There are three folders containing the main components of our project. The Pcap_Generation folder contains the script used to generate pcap files as well as all of the generated files used in this project. The Pcap_Parsing folder contains the Java project to parse Pcap files. The Visualization folder contains all of the web application code to create graphs of the data.
